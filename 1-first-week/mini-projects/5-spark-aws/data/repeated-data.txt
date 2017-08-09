@@ -1,0 +1,16 @@
+This is a file
+With more than one line in it.
+What a bad haiku.
+
+But if we add a second stanza
+But if we add a second stanza
+With a few lines of repeats
+With a few lines of repeats
+With a few lines of repeats
+With a few lines of repeats
+
+Then we wind up with repeated data
+And a
+And a
+And a
+Newly terrible poem
