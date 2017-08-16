@@ -448,7 +448,7 @@ def load_seismic_data(directory='/opt/data/seismic/',
     return seismic
 
 
-def load_movie_ratings(directory='/opt/data/movielens-latest/', readme='README.txt'):
+def load_movie_ratings(directory='~/data/movielens-latest/', readme='README.txt'):
     """
     load_movie_ratings(directory='/opt/data/movielens-latest/',
                        links='links.csv', movies='movies.csv',
