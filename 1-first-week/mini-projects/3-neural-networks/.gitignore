@@ -1,1 +1,4 @@
 *\n!.gitignore
+.ipynb_checkpoints
+MNIST_data
+*.h5
