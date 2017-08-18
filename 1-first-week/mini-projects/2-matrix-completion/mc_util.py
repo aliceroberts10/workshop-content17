@@ -47,7 +47,7 @@ def rmse(A, B):
     """
     return np.sqrt(mean_squared_error(A,B))
 
-def matrixCompletionSetup(r, m, n=None, p=None, k=None, squeeze=None):
+def matrixCompletionSetup(r, m, n=None, p=None):
     """
     matrixCompletionSetup(m, n, r, p) computes everything necessary to
                                       be set-up for a matrix
@@ -68,31 +68,45 @@ def matrixCompletionSetup(r, m, n=None, p=None, k=None, squeeze=None):
     Output
              U : the left m-by-r matrix
              V : the right n-by-r matrix
-             M : the low-rank matrix M
          Omega : the list of indices of M that were observed
     Omega_mask : the mask corresponding to observed entries Omega of
                  the matrix M
     """
+    print('There has been a re-write of this function. Please' +
+          'check documentation or source for more information.' +
+          'cf. sparseMatComSetup for a sparse version of this ' + 
+          'function.')
     if n is None:
         n = m
     if p is None:
         p = .5
-    if k is None:
-        k = 1
-    if (k == 1) and (squeeze is None):
-        squeeze = True
-    elif k > 1:
-        squeeze = False
-    U = np.random.randint(0, 5, size=(k,m,r))
-    V = np.random.randint(0, 5, size=(k,n,r))
-    M = np.einsum('ijk,ilk->ijl', U, V) # size=(k,m,n)
-    Omega_mask = (np.random.rand(k,m,n) <= p)
-    Omega = [idx.tolist() for idx in np.where(Omega_mask)]
-    if squeeze:
-        return (U.squeeze(), V.squeeze(), M.squeeze(),
-                Omega[1:], Omega_mask.squeeze())
-    else:
-        return (U, V, M, Omega, Omega_mask)
+
+    U = np.random.randint(0, 5, size=(m,r))
+    V = np.random.randint(0, 5, size=(n,r))
+    M = U @ V.T # size=(m,n)
+    Omega_mask = (np.random.rand(m,n) <= p)
+    Omega = matIndicesFromMask(Omega_mask)
+    M_Omega = observedEntriesFromMatIdxList(U,V,Omega)
+    return (U, V, M_Omega, Omega, Omega_mask)
+
+
+def sparseMatComSetup(r,m,n,p):
+    k = np.random.binomial(m*n, p)
+    Omega = (np.random.randint(m, size=k), np.random.randint(n, size=k))
+    U = np.random.randint(5, size=(m,r))
+    V = np.random.randint(5, size=(n,r))
+    observations = multiplyFromMatIdxList(U, V, Omega)
+    M_Omega = sparse.csr_matrix((observations, Omega), 
+                                shape=(m,n))
+    return (U, V, Omega, observations, M_Omega)
+
+
+def multiplyFromMatIdxList(U, V, Omega):
+    d = Omega[0].size # nnz
+    M_Omega = np.zeros(d)
+    for i,j,k in zip(range(d), *Omega):
+        M_Omega[i] = U[j, :] @ V[k, :]
+    return M_Omega
 
 
 def plot_error(M, M_rec, **kwargs):
