@@ -9,7 +9,8 @@
   accomplished, start by creating a 
   [new GitHub repository](https://help.github.com/articles/create-a-repo/)
   and pasting the link to it below.
-  
+* Be sure to read the README from Roger in the data directory; it
+  includes License and Copyright information.
   
   
 ## GitHub repository for this project
