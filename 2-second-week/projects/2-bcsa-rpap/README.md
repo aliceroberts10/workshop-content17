@@ -1,6 +1,8 @@
 # BC Data Science Workshop
 
-## Project 2: Instructions to get started
+## Project 2: BC Safety Authority
+
+## Instructions to get started
 
 To get started, visit [this GitHub repository](https://github.com/bcdataca/bcsa-bcdata), 
 or simply clone the repository into your bcdata.syzyg.ca container:

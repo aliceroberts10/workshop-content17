@@ -1,5 +1,7 @@
 # BC Data Science Workshop 2017
 
+## Project 1: Midvale
+
 ## Instructions to get started
 
 * Similar to Thursday, the data can be found in `~/data/1-Donaldson/`.

@@ -1,5 +1,7 @@
 # BC Data Science Workshop 2017
 
+## Project 3: Altius
+
 ## Instructions to get started
 
 * Read the [markdown file](./bc-data-workshop-Altius.md) in this folder to get started. 

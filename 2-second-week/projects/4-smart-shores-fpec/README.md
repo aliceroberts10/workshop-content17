@@ -1,5 +1,7 @@
 # BC Data Science Workshop 2017
 
+## Project 4: Smart Shores
+
 ## Instructions to get started
 
 * You can find the data required for this project in `~/data/4-Vadeboncoeur/`. 
